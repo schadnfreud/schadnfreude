@@ -1,0 +1,21 @@
+# Builds and tests schadnfreude in a docker container. Minifies JS.
+image: "rust:latest"
+
+before_script:
+  - git -c http.sslVerify=false submodule add --force ../libsodium.git
+  - git -c http.sslVerify=false submodule update --init --recursive
+  - apt update -yqq
+  - apt install -yqq --no-install-recommends build-essential libtool autoconf autotools-dev binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake bc
+
+# Use cargo to test and build the project
+test:cargo:
+  script:
+  - cd relay
+  - ./build_test_kcov.sh
+
+  artifacts:
+    paths:
+    - relay/kcovout.tar.xz
+    - relay/target/x86_64-unknown-linux-musl/release/schadnfreude
+    - relay/target/x86_64-unknown-linux-musl/release/schadnfreudestripped
+    expire_in: 1 month

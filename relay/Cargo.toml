@@ -1,0 +1,52 @@
+[package]
+name = "schadnfreude"
+version = "0.2.0"
+license = "MIT/Apache-2.0"
+authors = ["scriptjunkie <scriptjunkie@scriptjunkie.us>"]
+description = "The schadnfreude server"
+readme = "README.md"
+edition = "2018"
+
+[dependencies]
+bit_field = "0.10.1"
+yaml-rust = "0.4"
+linked-hash-map = "0.5"
+sled = { version = "0.34.6" }
+base64 = "0.13.0"
+bson = "0.14.1"
+rand = "0.7.0"
+arrayref = "0.3.5"
+arrayvec = { version = "0.5.2", features = ["array-sizes-33-128", "serde"] }
+chrono = "0.4.6"
+log = { version = "^0.4.5", features = ["std"] }
+crossbeam-channel = "0.4.4"
+libc = "0.2.51"
+dirs = "1.0.4"
+smallvec = { version = "1.6.1", features = ["write"] }
+#below here may be excluded for node-only builds if we implement conditional compilation
+serde = "1.0"
+serde_json = "1.0.27"
+serde_derive = "1.0"
+
+[dev-dependencies]
+reqwest = "0.9"
+socks5-async = "0.1.3"
+tokio = "0.2.22"
+
+[profile.release]
+panic = 'abort'
+lto = true
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser", "processenv"] }
+libloading = "0.6.6"
+
+[[bin]]
+path = "src/main.rs"
+name = "schadnfreude"
+
+[lib]
+path = "src/lib.rs"
+name = "schadnfreude"
+crate-type = ["cdylib"]
+

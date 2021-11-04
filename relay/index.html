@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="index.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="sf.css">
+</head>
+<body>
+	<div id="container">
+		<div id="contacts">
+			<div id="topbuttons">
+				<button id="myinfobutton" title="My Info">🛈</button>
+				<button id="addbutton" title="Add Contact">💬</button>
+				<button id="groupbutton" title="New Group">+👨‍👩</button>
+				<span id="spacer"></span>
+				<button id="exitbutton" title="Exit">✖</button>
+			</div>
+		</div>
+		<div id="chatwindow" class="hidmobl">
+			<div id="callindicator">
+				<p id="callbar">
+					<span id="callindicatortext" class="callbutton">Incoming call 📱</span>
+					<button id="acceptcall" href="#" title="Accept call" class="callbutton">📞</button>
+					<button id="videoAcceptButton" href="#" title="Accept video call" class="callbutton">📹</button>
+					<button id="stopcallbutton" href="#" title="Stop" class="callbutton">🛑</button>
+				</p>
+				<div id="vidcontainer">
+					<div class="item"><video id="localVideo" autoplay playsinline></video></div>
+				</div>
+			</div>
+			<div id="messages"></div>
+			<div id="controls">
+				<textarea type="text" id="messageinp"></textarea>
+				<div id="controlbuttons">
+					<button id="attachbutton" title="Attach">📎</button>
+					<input type="file" id="finp" multiple></input>
+					<button id="callbutton" title="Call">📞</button>
+					<button id="vidbutton" title="Video">📹</button>
+					<button id="screenbutton" title="Share Screen">💻</button>
+					<button id="invitebutton" title="Invite">+👨‍👩</button>
+					<button id="showshare" title="Shared files">📂</button>
+					<button id="leavebutton" title="Leave conversation">✖</button>
+					<button id="backtoconvolist" class="mobl" title="Back to conversations">◀</button>
+					<progress id="progressBar" max="100" min="0" value="0"></progress>
+					<button id="sendbutton" title="Send">⮞</button>
+				</div>
+			</div>
+		</div>
+		<div id="dragbar2" class="hiddn"></div>
+		<div id="shared" class="hidmobl">
+			<div id="sharecontrols">
+				<button id="sharebutton" title="Upload">▲</button>
+				<input type="file" id="fup" multiple></input>
+				<button id="delbutton" title="Delete">🗑</button>
+				<button id="downbutton" title="Download">▼</button>
+				<button id="renamebutton" title="Rename">✎</button>
+				<button id="newdirbutton" title="New Folder">+📂</button>
+				<button id="gitbutton" title="Create or clone a git repository">⠕</button>
+				<button id="backtoconvo" class="mobl" title="Back to conversation">◀</button>
+			</div>
+			<ol class="tree">
+				<li name="sharedfolder">
+					<label id="sharedfolderlab">Shared files</label> <input type="checkbox" checked/>
+					<ol id="sharedfolder" name="sharedfolder">
+					</ol>
+				</li>
+				<li>
+					<label>Sent files</label> <input type="checkbox"/>
+					<ol id="sentfolder">
+					</ol>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<div id="overlay" class="modal"></div>
+	<div id="popuplist" class="modal overlaytop"></div>
+	<div id="firstrun" class="modal">
+		<h1>welcome to schadnfreude</h1>
+		<p>Schadnfreude aims to provide all the features of a traditional secure messaging platform without the pitfalls of centrally-controlled services and vulnerable technologies. It lets you be anonymous, eliminate single points of failure, and avoid many kinds of security risks while still communicating in all the ways you like.</p>
+		<p>To start, pick a display name. This will be shared with anyone who you communicate with: <input type="text" id="dispname"></p>
+		<p>SOCKS proxy (optional, restarts schadnfreude) <input type="radio" name="proxver" value="4" checked> v4 <input type="radio" name="proxver" value="5"> v5 <input type="text" id="proxy" name="proxy" placeholder="1.2.3.4:8765"> <input type="submit" id="proxbutton" value="Apply"></p>
+		<button id="setupbtn">Syncing nodelist</button>
+	</div>
+	<div id="myinfo" class="modal">
+		<h1>my schadnfreude ID</h1>
+		<p>Display name: <input type="text" id="dname"></p>
+		<p>Share my ID with a text code or QR code: <input type="text" id="mysfid" readonly></p>
+		<div id="myidqr"></div>
+		<button id="infobtn">Done</button>
+	</div>
+	<div id="contactmodal" class="modal">
+		<h1>add a contact</h1>
+		<p>Have a schadnfreude ID? enter it here: <input id="contactkey" type="text" placeholder="umQO4whO_Zkv-vKw1LsQfn2A8GmjBN4oTfHfV_uB6pA"></input>
+			<button id="addcontactbutton">Add Contact</button></p>
+		<p>Alternately, you can <button id="scanqrbutton">scan a QR code</button></p>
+		<canvas id="qrCanvas" hidden></canvas>
+		<button id="qrdonebutton">Done</button>
+	</div>
+</body>
+</html>
