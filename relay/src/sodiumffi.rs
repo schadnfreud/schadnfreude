@@ -14,7 +14,7 @@ pub const CRYPTO_BOX_MACBYTES: usize = 16;
 pub const CRYPTO_BOX_SEALBYTES: usize = 48;
 pub const CRYPTO_SIGN_BYTES: usize = 64;
 
-#[link(name = "sodium")]
+#[link(name="sodium", kind="static")]
 extern "C" {
     pub fn sodium_init() -> i32;
     pub fn randombytes_buf(buf: *mut u8, bufsize: usize);
